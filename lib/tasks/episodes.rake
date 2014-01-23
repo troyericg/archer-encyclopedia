@@ -1,6 +1,7 @@
 require 'rest-client'
 require 'mechanize'
 require 'nokogiri'
+require 'csv'
 require 'open-uri'
 
 # constants
@@ -8,7 +9,8 @@ URL_TVDB = "http://thetvdb.com/?tab=seasonall&id=110381&lid=7"
 API_KEY = "****  REMOVED  ****"
 SERIES_ID = "110381"
 XML_PATH = "http://thetvdb.com/api/#{API_KEY}/series/#{SERIES_ID}/all/en.xml" # http://thetvdb.com/api/7AB64D5A508BD32F/series/110381/all/en.xml
-XML_FILE = "#{Rails.root}/db/series_data.xml"
+XML_FILE = "#{Rails.root}/db/data/series_data.xml"
+CSV_FILE = "#{Rails.root}/db/data/series_data.csv"
 
 namespace :get do
 
@@ -67,22 +69,49 @@ namespace :get do
 
 			seasons = ep_nodes.group_by{ |i| "#{i['season']}".to_sym }
 
+			@arrSeasons = []
+
 			seasons.each do |key, group|
-				group.sort!{ |a,b| "#{a['ep_number']}".to_sym <=> "#{b['ep_number']}".to_sym }
+				group.sort!{ |a,b| "#{a['ep_number']}".to_sym <=> "#{b['ep_number']}".to_sym }.each do |item|
+					@arrSeasons << item
+				end
 			end
 
-			puts seasons[8]
+			
 
 		rescue StandardError => e
 
 			parse_count += 1
 			puts "--------------------------------------------"
-			puts "Fail Number: #{count} "
+			puts "Fail Number: #{parse_count} "
 			puts "Fail Reason: #{e}"
 
 		end
 
 		f.close
+	end
+
+	desc "Parse xml and add episodes to database"
+	task :converted_csv => [ :parsed_xml, :environment] do
+		#puts @arrSeasons.size
+
+		sep_seasons = @arrSeasons.group_by{ |i| "#{i['season']}".to_sym }
+
+		@arrSeasons.each do |item|
+			puts "season_#{item[:season]}".to_sym
+		end
+
+		# (0..5).each do |num|
+		# 	csv_file = "#{Rails.root}/db/data/season_#{num}.csv"
+		# 	CSV.open(csv_file, "wb") do |csv|
+		# 		csv << @arrSeasons.first.keys
+
+		# 		@arrSeasons.each do |hsh|
+		# 			csv << hsh.values
+		# 		end
+		# 	end
+		# end
+		
 	end
 
 end
