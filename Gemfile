@@ -48,7 +48,7 @@ end
 # ------------  project specific  ------------ #
 
 
-gem 'gdata'
+gem 'gdata', git: 'https://github.com/agentrock/gdata.git'
 gem 'mechanize'
 gem 'nokogiri'
 gem 'rest-client'

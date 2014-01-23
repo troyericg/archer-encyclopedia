@@ -42,6 +42,7 @@ namespace :get do
 		parse_count = 0 
 
 		begin
+
 			f = File.open(XML_FILE)
 			doc = Nokogiri::XML(f)
 			episodes = doc.xpath("//Episode")
@@ -70,7 +71,10 @@ namespace :get do
 				group.sort!{ |a,b| "#{a['ep_number']}".to_sym <=> "#{b['ep_number']}".to_sym }
 			end
 
+			puts seasons[8]
+
 		rescue StandardError => e
+
 			parse_count += 1
 			puts "--------------------------------------------"
 			puts "Fail Number: #{count} "
