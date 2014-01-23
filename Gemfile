@@ -48,6 +48,7 @@ end
 # ------------  project specific  ------------ #
 
 
+gem 'gdata'
 gem 'mechanize'
 gem 'nokogiri'
 gem 'rest-client'
