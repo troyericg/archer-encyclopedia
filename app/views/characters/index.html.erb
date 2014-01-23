@@ -1,0 +1,15 @@
+<ul>
+<% @characters.each do |character| %>
+	<li>
+		<h3><%= character.name %></h3>
+		<p><%= character.bio %></p>
+		<p>
+			<% @episodes.each do |ep| %>
+			<%= ep.id %>, 
+			<% end %>
+			.
+		</p>
+	</li>
+	<hr />
+<% end %>
+</ul>

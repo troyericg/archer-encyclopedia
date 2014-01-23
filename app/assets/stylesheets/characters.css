@@ -1,0 +1,21 @@
+/*  Place all the styles related to the Characters controller here.
+	They will automatically be included in application.css.
+	You can use Sass (SCSS) here: http://sass-lang.com/ */
+
+ul,
+li, 
+ul li {
+	list-style: none;
+	list-style-type: none;
+	padding-left: 0px;
+}
+
+li h3 {
+	color: black;
+	margin-bottom: 0px;
+}
+
+li p {
+	color: #666;
+	margin: 0;
+}
