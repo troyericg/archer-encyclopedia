@@ -10,7 +10,6 @@ API_KEY = "****  REMOVED  ****"
 SERIES_ID = "110381"
 XML_PATH = "http://thetvdb.com/api/#{API_KEY}/series/#{SERIES_ID}/all/en.xml" # http://thetvdb.com/api/7AB64D5A508BD32F/series/110381/all/en.xml
 XML_FILE = "#{Rails.root}/db/data/series_data.xml"
-CSV_FILE = "#{Rails.root}/db/data/series_data.csv"
 
 namespace :get do
 
@@ -53,7 +52,7 @@ namespace :get do
 
 			ep_nodes = episodes.map do |ep|
 				episode_skeleton = {}
-				episode_skeleton[:ep_number] = ep.xpath("EpisodeNumber").inner_text
+				episode_skeleton[:number] = ep.xpath("EpisodeNumber").inner_text
 				episode_skeleton[:season] = ep.xpath("SeasonNumber").inner_text
 				episode_skeleton[:title] = ep.xpath("EpisodeName").inner_text
 				episode_skeleton[:summary] = ep.xpath("Overview").inner_text
@@ -72,12 +71,10 @@ namespace :get do
 			@arrSeasons = []
 
 			seasons.each do |key, group|
-				group.sort!{ |a,b| "#{a['ep_number']}".to_sym <=> "#{b['ep_number']}".to_sym }.each do |item|
-					@arrSeasons << item
+				group.sort!{ |a,b| "#{a['number']}".to_sym <=> "#{b['number']}".to_sym }.each do |item|
+					Episode.create(item)
 				end
 			end
-
-			
 
 		rescue StandardError => e
 
@@ -89,29 +86,6 @@ namespace :get do
 		end
 
 		f.close
-	end
-
-	desc "Parse xml and add episodes to database"
-	task :converted_csv => [ :parsed_xml, :environment] do
-		#puts @arrSeasons.size
-
-		sep_seasons = @arrSeasons.group_by{ |i| "#{i['season']}".to_sym }
-
-		@arrSeasons.each do |item|
-			puts "season_#{item[:season]}".to_sym
-		end
-
-		# (0..5).each do |num|
-		# 	csv_file = "#{Rails.root}/db/data/season_#{num}.csv"
-		# 	CSV.open(csv_file, "wb") do |csv|
-		# 		csv << @arrSeasons.first.keys
-
-		# 		@arrSeasons.each do |hsh|
-		# 			csv << hsh.values
-		# 		end
-		# 	end
-		# end
-		
 	end
 
 end
