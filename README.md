@@ -1,7 +1,7 @@
 
 The 'Archer' Encyclopedia
 ========================
-The television show ['Archer'] is known for making references to obscure figures and subjects. This app helps make sense of them all.
+The television show ['Archer'](http://www.fxnetworks.com/archer) is known for making references to obscure figures and subjects. This app helps make sense of them all.
 
 (episode data from [The TVDB](http://thetvdb.com/))
 
