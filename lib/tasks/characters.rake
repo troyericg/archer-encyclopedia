@@ -8,10 +8,6 @@ namespace :get do
 	desc "Get character data from Wikipedia"
 	task :characters => :environment do
 
-		# constants
-		URL_WIKI = "http://en.wikipedia.org/wiki"
-		URL_WIKI_ARCHER = "#{URL_WIKI}/Archer_(TV_series)"
-
 		character_skeleton = {
 			:name => nil,
 			:actor => nil,
@@ -92,8 +88,15 @@ namespace :get do
 
 	desc "Test character data in database"
 	task :character_names => :environment do
-		puts "How many characters?"
-		puts Character.all.size
+
+		@character_set = Character.all
+		search_term = "Cheryl"
+
+		sterling = @character_set.find_by name: "Sterling Malory Archer"
+		cheryl = @character_set.find(:all, :conditions => ["name like ?", "%#{search_term}%"]).first
+
+		puts "The character 'Sterling Archer' is voiced by #{sterling[:actor]}."
+		puts "The character 'Cheryl Tunt' is voiced by #{cheryl[:actor]}."
 	end
 
 end
