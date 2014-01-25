@@ -101,6 +101,7 @@ li.character p.references:hover span {
 }
 
 li.character p.references span:hover {
+	background-color: #f4f4f4;
 	opacity: 1;
 	color: #000;
 	text-decoration: underline;

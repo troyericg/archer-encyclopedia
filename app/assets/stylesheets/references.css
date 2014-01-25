@@ -107,14 +107,14 @@ div.reference-inner div.column-1 div.referral-list ul li {
 	float: left;
 	margin: 0px 5px 5px 0px;
 	padding-top: 0px;
-	width: 45px;
+	width: 25px;
 	border: none;
 }
 
 div.reference-inner div.column-1 div.referral-list ul li div.img {
 	border-radius: 50%;
-	width: 45px;
-	height: 45px;
+	width: 25px;
+	height: 25px;
 	overflow: hidden;
 }
 

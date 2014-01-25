@@ -12,8 +12,8 @@
 			</div>
 			<div class="column-2">
 				<p class="references">
-					<% @episodes.each do |ep| %>
-					 &#9642; <span><%= ep.title %></span>
+					<% character.references.each do |ep| %>
+					 &#9642; <span><%= ep.line %></span>
 					<% end %>
 				</p>
 				<ul class="categories">
