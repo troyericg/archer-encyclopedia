@@ -12,15 +12,14 @@
 			</div>
 			<div class="column-2">
 				<p class="references">
-					<% @episodes.each do |ep| %>
-					 &#9642; <span><%= ep.title %></span>
+					<% character.references.each do |ref| %>
+					 &#9642; <span><%= ref.line %></span>
 					<% end %>
 				</p>
 				<ul class="categories">
-					<li>Art &amp; Culture</li>
-					<li>Music</li>
-					<li>U.S. History</li>
-					<li>World History</li>
+					<% category_list(character).each do |cat| %>
+					<li><%= cat %></li>
+					<% end %>
 				</ul>
 			</div>
 		</div>
