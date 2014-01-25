@@ -14,3 +14,16 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+// On Scroll: Unhook top navigation 
+
+$(window).scroll(function() {
+	var $win = $(this);
+	var $nav = $('div#nav-main');
+    
+	if (!$nav.hasClass("fixed") && ($win.scrollTop() + 10 > $nav.offset().top)) {
+		$nav.addClass("fixed").data("top", $nav.offset().top);
+	} else if ($nav.hasClass("fixed") && ($win.scrollTop() < $nav.data("top"))) {
+		$nav.removeClass("fixed");
+}});

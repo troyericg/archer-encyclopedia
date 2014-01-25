@@ -47,7 +47,7 @@ namespace :get do
 
 	end
 
-	desc "Get references from Google doc"
+	desc "Add references to database"
 	task :parsed_references => :environment do
 		c = File.open(CSV_FILE, "r")
 		c.each_line do |lne|

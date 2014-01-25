@@ -1,15 +1,29 @@
 <ul>
 <% @characters.each do |character| %>
-	<li>
-		<h3><%= character.name %></h3>
-		<p><%= character.bio %></p>
-		<p>
-			<% @episodes.each do |ep| %>
-			<%= ep.id %>, 
-			<% end %>
-			.
-		</p>
+	<li class="character">
+		<div class="character-inner">
+			<div class="column-1">
+				<div class="img">
+					<%= image_tag "#{ character.name.gsub(/\p{^Alnum}/, '').downcase }.png" %>
+				</div>
+				<h3><%= character.name %></h3>
+				<p class="bio"><%= character.summary.split(".")[0] %>.<p>
+				<p class="details">A Number of References over a Number of Episodes<p>
+			</div>
+			<div class="column-2">
+				<p class="references">
+					<% @episodes.each do |ep| %>
+					 &#9642; <span><%= ep.title %></span>
+					<% end %>
+				</p>
+				<ul class="categories">
+					<li>Art &amp; Culture</li>
+					<li>Music</li>
+					<li>U.S. History</li>
+					<li>World History</li>
+				</ul>
+			</div>
+		</div>
 	</li>
-	<hr />
 <% end %>
 </ul>

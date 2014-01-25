@@ -1,3 +1,159 @@
 /*  Place all the styles related to the References controller here.
 	They will automatically be included in application.css.
 	You can use Sass (SCSS) here: http://sass-lang.com/ */
+
+
+ul li.section-letter {
+	width: 100%;
+	margin-top: 40px;
+	padding: 40px 0px;
+}
+
+li.section-letter:first-child {
+	border-top: none;
+	margin-top: 0px;
+}
+
+ul li.section-letter .letter-header {
+	display: inline-block;
+	width: 100%;
+}
+
+
+h5.letter {
+	display: inline;
+	float: left;
+	border-right: 1px solid #e2e2e2;
+	color: #000;
+	font-family: "ScalaSans-BoldLF", arial, helvetica, sans-serif;
+	font-size: 60px;
+	line-height: 40px;
+	width: 50px;
+	margin-right: 24px;
+	padding-right: 24px;
+}
+
+h6.details {
+	display: inline;
+	float: left;
+	color: #777;
+	font-family: "ScalaSans-LightItalic", arial, helvetica, sans-serif;
+	font-size: 22px;
+	line-height: 28px;
+	width: 100%;
+	max-width: 400px;
+	margin-top: -11px;
+}
+
+ul.section-references li {
+	background-color: #fff;
+	border-top: 1px solid #ccc;
+	margin-top: 24px;
+	margin-left: 99px;
+	padding-top: 20px;
+	width: 871px;
+}
+
+ul.section-references li div.reference-inner {
+	display: inline-block;
+	width: 100%;
+}
+
+div.reference-inner div.column-1 {
+	display: inline-block;
+	float: left;
+	width: 232px;
+	margin-right: 14px;
+}
+
+div.reference-inner div.column-1 h2 {
+	font-family: "Scala Sans", arial, helvetica, sans-serif;
+	font-size: 30px;
+	font-weight: 700;
+	margin-bottom: 6px;
+}
+
+div.reference-inner div.column-1 p.details {
+	color: #999;
+	font-size: 12px;
+	text-transform: uppercase;
+	margin-bottom: 24px;
+}
+
+div.reference-inner div.column-1 p.categories {
+	color: #909090;
+	font-size: 13px;
+	margin-bottom: 24px
+}
+
+div.reference-inner div.column-1 h6.title {
+	font-family: "Scala Sans", arial, helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: 700;
+	width: 122px;
+	border-top: 1px solid #ccc;
+	margin-bottom: 12px;
+	padding-top: 6px;
+}
+
+div.reference-inner div.column-1 div.referral-list ul {
+	display: inline-block;
+	width: 100%;
+	max-width: 150px;
+}
+
+div.reference-inner div.column-1 div.referral-list ul li {
+	display: inline;
+	float: left;
+	margin: 0px 5px 5px 0px;
+	padding-top: 0px;
+	width: 45px;
+	border: none;
+}
+
+div.reference-inner div.column-1 div.referral-list ul li div.img {
+	border-radius: 50%;
+	width: 45px;
+	height: 45px;
+	overflow: hidden;
+}
+
+div.reference-inner div.column-1 div.referral-list ul li div.img img {
+	width: 100%;
+}
+
+div.reference-inner div.column-2 {
+	display: inline;
+	float: left;
+	width: 158px;
+	margin-right: 54px;
+}
+
+div.reference-inner div.column-2 div.img {
+	width: 100%;
+}
+
+div.reference-inner div.column-2 div.img img {
+	width: 100%;
+}
+
+div.reference-inner div.column-3 {
+	display: inline;
+	float: left;
+	width: 382px;
+}
+
+div.reference-inner div.column-3 p {
+	font-size: 14px;
+	line-height: 24px;
+	margin-top: -6px;
+	margin-bottom: 6px;
+}
+
+div.reference-inner div.column-3 a,
+div.reference-inner div.column-3 a:link,
+div.reference-inner div.column-3 a:visited {
+	font-family: "Scala Sans", arial, helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: 700;
+}

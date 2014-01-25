@@ -8,6 +8,244 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require reset
  *= require_self
  *= require_tree .
  */
+
+body {
+	font-family: georgia, "times new roman", serif;
+	color:#3e3e3e;
+	font-size:1em;
+	font-smoothing:antialiased;
+	-o-font-smoothing:antialiased;
+	-moz-font-smoothing:antialiased;
+	-webkit-font-smoothing:antialiased;
+}
+
+
+a:link, a:visited {
+	color:#3182BD;
+	outline:none;
+	text-decoration:none;
+}
+
+
+a:hover {
+	text-decoration: underline;
+}
+
+
+/* PAGE STRUCTURE ------------------------------------------------------------*/
+
+div#wrapper {
+	display:block;
+	position:relative;
+	width:100%;
+}
+
+div#main {
+	width: 970px;
+	margin: 0 auto;
+	padding-bottom: 60px;
+}
+
+div#footer {
+	background-color: #f4f4f4;
+	border-top: 1px solid #ccc;
+	width: 100%;
+	height: 100px;
+}
+
+
+/* HEADER ------------------------------------------------------------*/
+
+div#header {
+	width: 100%;
+	height: 100%;
+	min-height: 392px;
+	background-color: #1a1a1a; /* #f4f4f4 */
+	border-bottom: 1px solid #fff; /*#ccc*/
+	margin-bottom: 20px;
+}
+
+div#header div.header-inner {
+	width: 100%;
+	max-width: 970px;
+	height: 220px;
+	border-bottom: 4px solid #fff; /* #000 */
+	margin: 0 auto 12px auto;
+	padding: 20px 0px;
+	background-image: url(group-cut-2.png);
+	background-position: right bottom;
+	background-repeat: no-repeat;
+}
+
+div#header div.header-inner ul {
+	float: right;
+}
+
+div#header div.header-inner ul#nav-top li {
+	display: inline;
+	border-left: 1px solid #f4f4f4; /* #666 */
+	color: #f4f4f4; /* #666 */
+	font-family: "Scala Sans", arial, helvetica, sans-serif;
+	font-size: 11px;
+	text-transform: uppercase;
+	padding: 0px 12px;
+}
+
+div#header div.header-inner ul#nav-top li.first {
+	border: none;
+}
+
+div#header div.header-inner h1 {
+	background-image: url(bg_colors.png);
+	background-position: left top -16px;
+	background-repeat: no-repeat;
+	color: #fff; /* #000 */
+	font-family: "ScalaSans-BlackItalic", arial, helvetica, sans-serif;
+	font-size: 56px;
+	margin-bottom: 12px;
+	padding-top: 48px;
+	padding-left: 60px;
+/*	width: 380px;*/
+}
+
+div#header div.header-inner h1 span {
+	display: block;
+	font-family: "Scala Sans", arial, helvetica, sans-serif;
+	font-size: 22px;
+	font-weight: 500;
+	text-transform: uppercase;
+}
+
+div#header div.header-inner p {
+	color: #fff;
+	font-family: "Scala Sans", arial, helvetica, sans-serif;
+	font-size: 13px;
+	line-height: 22px;
+	width: 280px;
+	padding-left: 60px;
+}
+
+div#nav-main {
+/*	position: fixed;*/
+	background-color: #1a1a1a; /* #ccc; */
+	width: 100%;
+}
+
+div#nav-main div.nav-main-inner {
+	display: table;
+	margin: 0 auto;
+	padding-bottom: 12px;
+}
+
+div#nav-main div.nav-main-inner ul {
+	display: inline-block;
+	width: 100%;
+}
+
+div#nav-main div.nav-main-inner ul span.pipe {
+	display: inline;
+	float: left;
+	padding-top: 10px;
+	color: #909090;
+}
+
+div#nav-main div.nav-main-inner ul li {
+	display: inline;
+	float: left;
+	color: #fff;
+	font-family: "Scala Sans", arial, helvetica, sans-serif;
+	font-size: 13px;
+	text-align: center;
+	text-transform: uppercase;
+	margin: 0px 12px 8px 12px;
+	padding: 12px 16px;
+	width: 112px;
+	cursor: pointer;
+	transition-duration: 0.4s;
+	-o-transition-duration: 0.4s;
+	-moz-transition-duration: 0.4s;
+	-webkit-transition-duration: 0.4s;
+}
+
+div#nav-main div.nav-main-inner ul a {
+	color: #fff;
+}
+
+div#nav-main div.nav-main-inner ul li.first {
+	border-left: none;
+	margin-left: 0px;
+}
+
+div#nav-main div.nav-main-inner ul li:hover,
+div#nav-main div.nav-main-inner ul li:hover a {
+	color: #fff;
+	background-color: #3A9BFA; /* #ccc; */
+	transition-duration: 0.4s;
+	-o-transition-duration: 0.4s;
+	-moz-transition-duration: 0.4s;
+	-webkit-transition-duration: 0.4s;
+}
+
+
+div#nav-display {
+	display: none;
+	background-color: #f4f4f4;
+	border: 1px solid #E2E2E2;
+	width: inherit;
+	height: 0px;
+	opacity: 0;
+	overflow: hidden;
+	transition-duration: 0.4s;
+	-o-transition-duration: 0.4s;
+	-moz-transition-duration: 0.4s;
+	-webkit-transition-duration: 0.4s;
+}
+
+div.nav-display-inner {
+	font-family: "Scala Sans", arial, helvetica, sans-serif;
+	font-size: 13px;
+	text-align: center;
+	padding: 12px;
+	transition-duration: 0.4s;
+	-o-transition-duration: 0.4s;
+	-moz-transition-duration: 0.4s;
+	-webkit-transition-duration: 0.4s;
+}
+
+div.nav-main-inner:hover div#nav-display {
+	display: block;
+	opacity: 1;
+	height: 40px;
+	transition-duration: 0.4s;
+	-o-transition-duration: 0.4s;
+	-moz-transition-duration: 0.4s;
+	-webkit-transition-duration: 0.4s;
+}
+
+.fixed {
+	position:fixed !important;
+	padding-top:10px;
+	top: 0px;
+	opacity: 0.8;
+	z-index: 9999999;
+}
+
+div#nav-main.fixed:hover {
+	opacity: 1;
+}
+
+div#nav-main.fixed div.nav-main-inner ul {
+	display: none;
+}
+
+div#nav-main.fixed div.nav-main-inner div#nav-display {
+	display: block;
+	opacity: 1;
+	height: 40px;
+	width: 850px;
+}
+
