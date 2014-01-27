@@ -1,23 +1,28 @@
 <ul>
-<% @alphabet.each do |letter| %>
+<%  @grouped.keys.sort.each do |letter| %>
 	<li class="section-letter">
 		<div class="letter-header">
 			<h5 class="letter"><%= letter %></h5>
-			<h6 class="details">120 references, covering Music, Art & Culture, Science, and Celebrities </h6>
+			<h6 class="details">120 references, covering Music, Art &amp; Culture, Science, and Celebrities </h6>
 		</div>
 		<ul class="section-references">
-			<li>
+			<% @grouped[letter].each do |ref| %>
+			<% ref_id = "#{ ref.subject.gsub(/\p{^Alnum}/, '').downcase }" %>
+			<li id="<%= ref_id %>">
 				<div class="reference-inner">
 					<div class="column-1">
-						<h2>John Williams</h2>
-						<p class="details">2 References in 1 episode</p>
+						<h2><%= ref.subject %></h2>
+						<p class="details"># References in # episode</p>
 						<p class="categories">Found in <a href="#">Music</a></p>
 						<div class="referral-list">
 							<h6 class="title">Referenced By</h6>
 							<ul>
-								<li><div class="img"><%= image_tag "cyrilfiggis.png" %></div></li>
-								<li><div class="img"><%= image_tag "lanakane.png" %></div></li>
-								<li><div class="img"><%= image_tag "woodhouse.png" %></div></li>
+								<% ref.characters.each do |char| %>
+								<% char_id = "#{ char.name.gsub(/\p{^Alnum}/, '').downcase }" %>
+								<%= link_to characters_path(:anchor => "#{char_id}") do %>
+								<li><div class="img"><%= image_tag "#{char_id}.png" %></div></li>
+								<% end %>
+								<% end %>
 							</ul>
 						</div>
 					</div>
@@ -30,56 +35,7 @@
 					</div>
 				</div>
 			</li>
-			<li>
-				<div class="reference-inner">
-					<div class="column-1">
-						<h2>John Williams</h2>
-						<p class="details">2 References in 1 episode</p>
-						<p class="categories">Found in <a href="#">Music</a></p>
-						<div class="referral-list">
-							<h6 class="title">Referenced By</h6>
-							<ul>
-								<li><div class="img"><%= image_tag "cyrilfiggis.png" %></div></li>
-								<li><div class="img"><%= image_tag "lanakane.png" %></div></li>
-								<li><div class="img"><%= image_tag "woodhouse.png" %></div></li>
-								<li><div class="img"><%= image_tag "cyrilfiggis.png" %></div></li>
-								<li><div class="img"><%= image_tag "lanakane.png" %></div></li>
-							</ul>
-						</div>
-					</div>
-					<div class="column-2">
-						<div class="img"><%= image_tag "ref_john_williams.jpg" %></div>
-					</div>
-					<div class="column-3">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sagittis ullamcorper libero et ornare. Sed ornare, dolor id cursus facilisis, tellus ante tempor eros, ac porta mi dolor at diam. Ut fermentum turpis vel feugiat commodo. Nunc a ipsum at justo sagittis vulputate.</p>
-						<a href="#">More on Wikipedia »</a>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class="reference-inner">
-					<div class="column-1">
-						<h2>John Williams</h2>
-						<p class="details">2 References in 1 episode</p>
-						<p class="categories">Found in <a href="#">Music</a></p>
-						<div class="referral-list">
-							<h6 class="title">Referenced By</h6>
-							<ul>
-								<li><div class="img"><%= image_tag "cyrilfiggis.png" %></div></li>
-								<li><div class="img"><%= image_tag "lanakane.png" %></div></li>
-								<li><div class="img"><%= image_tag "woodhouse.png" %></div></li>
-							</ul>
-						</div>
-					</div>
-					<div class="column-2">
-						<div class="img"><%= image_tag "ref_john_williams.jpg" %></div>
-					</div>
-					<div class="column-3">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sagittis ullamcorper libero et ornare. Sed ornare, dolor id cursus facilisis, tellus ante tempor eros, ac porta mi dolor at diam. Ut fermentum turpis vel feugiat commodo. Nunc a ipsum at justo sagittis vulputate.</p>
-						<a href="#">More on Wikipedia »</a>
-					</div>
-				</div>
-			</li>
+			<% end %>
 		</ul>
 	</li>
 <% end %>

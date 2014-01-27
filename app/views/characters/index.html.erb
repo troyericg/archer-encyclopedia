@@ -1,10 +1,11 @@
 <ul>
 <% @characters.each do |character| %>
-	<li class="character">
+	<% char_id = "#{ character.name.gsub(/\p{^Alnum}/, '').downcase }" %>
+	<li class="character" id="<%= char_id %>">
 		<div class="character-inner">
 			<div class="column-1">
 				<div class="img">
-					<%= image_tag "#{ character.name.gsub(/\p{^Alnum}/, '').downcase }.png" %>
+					<%= image_tag "#{char_id}.png" %>
 				</div>
 				<h3><%= character.name %></h3>
 				<p class="bio"><%= character.summary.split(".")[0] %>.<p>
@@ -13,7 +14,10 @@
 			<div class="column-2">
 				<p class="references">
 					<% character.references.each do |ref| %>
-					 &#9642; <span><%= ref.line %></span>
+					<% ref_id = "#{ ref.subject.gsub(/\p{^Alnum}/, '').downcase }" %>
+					 &#9642; <%= link_to references_path(:anchor => "#{ref_id}") do %>
+					 	<span><%= ref.line %></span>
+					 <% end %>
 					<% end %>
 				</p>
 				<ul class="categories">
