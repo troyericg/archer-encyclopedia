@@ -72,11 +72,6 @@ namespace :get do
 			}
 		]
 
-		puts "---------------------"
-		puts "Step 02: Grab this character info - #{URL_WIKI_ARCHER}"
-		puts "---------------------"
-		puts 
-
 		character_data.each do |character|
 
 			Character.create(character)

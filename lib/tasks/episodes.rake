@@ -37,10 +37,12 @@ namespace :get do
 	end
 
 	desc "Parse xml and add episodes to database"
-	task :parsed_xml => :environment do
+	task :episodes => :environment do
 
 		# Begin/Rescue: fail count 
 		parse_count = 0 
+
+		Episode.delete_all
 
 		begin
 
@@ -63,18 +65,9 @@ namespace :get do
 					episode_skeleton[:flag] = false
 				end
 
-				episode_skeleton
+				Episode.create(episode_skeleton)
 			end
 
-			seasons = ep_nodes.group_by{ |i| "#{i['season']}".to_sym }
-
-			@arrSeasons = []
-
-			seasons.each do |key, group|
-				group.sort!{ |a,b| "#{a['number']}".to_sym <=> "#{b['number']}".to_sym }.each do |item|
-					Episode.create(item)
-				end
-			end
 
 		rescue StandardError => e
 
@@ -86,6 +79,31 @@ namespace :get do
 		end
 
 		f.close
+	end
+
+	desc "Parse xml and add episodes to database"
+	task :xml_test => :environment do
+
+		# f = File.open(XML_FILE)
+		# doc = Nokogiri::XML(f)
+		# episodes = doc.xpath("//Episode")
+
+		@all_episodes = Episode.all
+
+		@all_episodes.each do |ep|
+			puts "Season: #{ep[:season]} ; Episode: #{ep[:number]}"
+		end
+
+		# episodes.each do |ep|
+		# 	seasn = ep.xpath("SeasonNumber").inner_text.to_i
+		# 	num = ep.xpath("EpisodeNumber").inner_text.to_i
+		# 	name = ep.xpath("EpisodeName").inner_text
+
+		# 	if (seasn == 1)
+		# 		puts name
+		# 	end
+		# end
+
 	end
 
 end

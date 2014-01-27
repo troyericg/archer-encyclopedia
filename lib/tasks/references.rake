@@ -73,56 +73,71 @@ namespace :get do
 
 		# converts csv into array of hashes
 		csv_hsh = csv.to_a.map { |row| row.to_hash }
-		
-		puts 
 
 		# FOR TEST: Clear out reference database 
 		Reference.delete_all
 
+		@all_characters.each do |char|
+			char.references.delete_all
+			char.episodes.delete_all
+		end
+
 		# cycles through csv/reference data and matches with database object 
+		count = 0
+
 		csv_hsh.each do |ref|
-			search_term = ref[:character]
-			character_model = @all_characters.find(:all, :conditions => ["name like ?", "%#{search_term}%"]).first
-			ep_model = @all_episodes.find(:all, :conditions => ["season == ? AND number == ?", "#{ref[:season]}", "#{ref[:episode_number]}"]).first
+			
+			begin 
+				character_model = @all_characters.where("name like ?", "%#{ref[:character]}%").first
+				ep_model = @all_episodes.where("season = ?", "#{ref[:season]}").where( "number = ?", "#{ref[:episode_number]}").first
 
-			ref_skeleton = {}
-			ref_skeleton[:line] = ref[:reference_line]
-			ref_skeleton[:subject] = ref[:reference_subject]
-			ref_skeleton[:category] = ref[:reference_category]
+				puts character_model.class
 
-			# TO-DO: Add in :summary, :image, and :link. Populated with wiki data
+				ref_skeleton = {}
+				ref_skeleton[:line] = ref[:reference_line]
+				ref_skeleton[:subject] = ref[:reference_subject]
+				ref_skeleton[:category] = ref[:reference_category]
 
-			ref_model = Reference.create(ref_skeleton)
+				# TO-DO: Add in :summary, :image, and :link. Populated with wiki data
+				ref_model = Reference.find_by(line: ref_skeleton[:line]) || Reference.create(ref_skeleton)
 
-			print <<-LOGLINE;
-			In Episode #{ep_model[:number]} - Season #{ep_model[:season]} 
-			#{character_model[:name]} referenced #{ref[:reference_subject]}, 
-			with the line \"#{ref[:reference_line]}\"
-			LOGLINE
-			puts 
-			puts "---------------------"
+				print <<-LOGLINE;
+				In Episode #{ep_model[:number]} - Season #{ep_model[:season]} 
+				#{character_model[:name]} referenced #{ref[:reference_subject]}, 
+				with the line \"#{ref[:reference_line]}\"
+				LOGLINE
+				puts 
+				puts "---------------------"
 
-			character_model.references.delete_all
-			ref_model.episodes.delete_all
-			character_model.episodes.delete_all
+				puts character_model.references.count
 
-			# how it goes down 
-			# ---------------------
-			# push newly-created reference model into matched characer model 
-			character_model.references << ref_model
+				# how it goes down 
+				# ---------------------
+				# push newly-created reference model into matched characer model 
+				# character_model.references << ref_model
 
-			# push matched episode model into reference model 
-			ref_model.episodes << ep_model
+				# push matched episode model into reference model 
+				ref_model.episodes << ep_model
 
-			# finally, push episode model into character model 
-			character_model.episodes << ep_model
+				# finally, push episode model into character model 
+				character_model.episodes << ep_model
+
+				puts character_model.references.count
+
+			rescue StandardError => e
+				count += 1
+				puts "--------------------------------------------"
+				puts "Fail Number: #{count} "
+				puts "Fail Reason: #{e}"
+
+			end
 		end
 		c.close
 
-		ref_m = Reference.first
-		puts ref_m[:subject]
-		puts ref_m[:line]
-		puts ref_m.episodes.first
+		# ref_m = Reference.first
+		# puts ref_m[:subject]
+		# puts ref_m[:line]
+		# puts ref_m.episodes.first
 	end
 
 end
