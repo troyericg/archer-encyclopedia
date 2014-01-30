@@ -56,6 +56,8 @@ gem 'nokogiri'
 
 gem 'rest-client'
 
+gem 'd3-rails'
+
 
 # ------------------  end  ------------------- #
 

@@ -7,7 +7,8 @@ ArcherEncyclopedia::Application.routes.draw do
 
   resources :characters, :references, :episodes
 
-  root 'characters#index'
+  # root 'characters#index'
+  root 'episodes#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

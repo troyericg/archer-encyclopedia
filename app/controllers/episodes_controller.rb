@@ -1,10 +1,15 @@
 class EpisodesController < ApplicationController
-	@episodes = Episode.all
+	
+	def index
+		@episodes = Episode.all
+		@seasons = @episodes.group_by{|e| e['season']}
+	end
 
-	@season_specials = Episode.specials
-	@season_one = Episode.season_one
-	@season_two = Episode.season_two
-	@season_three = Episode.season_three
-	@season_four = Episode.season_four
-	@season_five = Episode.season_five
+	def show
+		@seasons = Episode.all.group_by{|e| e['season']}
+		respond_to do |format|
+			format.any { render :json => @seasons }
+		end
+	end
+
 end

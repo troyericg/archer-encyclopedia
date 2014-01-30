@@ -1,5 +1,83 @@
-<div style="width:100%;text-align:center;">
-<h1>YOU'RE IN THE DANGER ZONE!!!!!!</h1>
-<br />
-<p>(Also known as the zone soon to be replaced with a set of d3 visualizations)</p>
-</div>
+
+<ul id="seasons-list">	
+</ul>
+<script type="text/javascript">
+	d3.json("/episodes/show", function(error, data){
+		// reusable function for building down-page grids 
+		var buildGridCharts = function(data, id){
+			
+			var width = 870,
+				height = 160,
+				boxSize = 8,
+				margin = 0,
+				num,
+				nuBox;
+
+			var hoverOff = {
+				"fill": "lightsteelblue",
+				"stroke": "#fff",
+				"stroke-width":1,
+				"opacity": 0.7
+			};
+
+			var hoverOn = {
+				"stroke": "#808080",
+				"stroke-width":4,
+				"opacity": 1
+			};
+
+			var $chart = $('<li />');
+				$h2 = $('<h2 />').text("Season " + data[0].season),
+				$p = $('<p />').text("# References over " + data.length + " episodes").addClass("details");
+			$chart.append($h2).append($p);
+			$chart.append($('<div />').attr('id', 'box-chart-' + id));
+			$("#seasons-list").append($chart);
+
+			var boxChrt = d3.select('#box-chart-' + id)
+				.append("svg")
+				.attr({
+				width: width,
+				height: height
+				}).append("g")
+				.attr("transform", "translate(" + 80 + "," + 34 + ")");
+
+			boxChrt.selectAll("circle")
+					.data(data)
+					.enter().append("circle")
+					.attr("r", function(d){
+						num = Math.floor((Math.random()*30)+1);
+						if (num > boxSize) {
+							nuBox = num;
+							return num;
+
+						} else {
+							nuBox = boxSize;
+							return boxSize;
+						}
+					})
+					.attr("transform", function(d,i) {
+						return "translate(" + ((boxSize)*(i*4) + 0) + "," + ((boxSize + 2)*Math.floor(i/14) + margin) + ")"
+					})
+					.style(hoverOff)
+					.on("mouseover", function(){ d3.select(this).style(hoverOn); })
+					.on("mouseout", function(){ d3.select(this).style(hoverOff); });
+
+			var boxContainer = d3.select('#box-chart-' + id)
+				.append("div")
+				.attr("class", "box-container");
+		};
+
+		console.log(data[1]);
+
+		// sets a unique chart ID and builds all down-page grids
+		var chartID = 0;
+		for(set in data){
+			if (data[set][0].season > 0 && data[set][0].season !== null) {
+				buildGridCharts(data[set], chartID+=1);
+			};
+		}
+
+		//buildGridCharts(data[2], chartID+=1);
+		
+	});
+</script>
