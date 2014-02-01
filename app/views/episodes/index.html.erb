@@ -1,6 +1,7 @@
-
-<ul id="seasons-list">	
-</ul>
+<div class="main-inner">
+	<ul id="seasons-list">	
+	</ul>
+</div>
 <script type="text/javascript">
 	d3.json("/episodes/show", function(error, data){
 		// reusable function for building down-page grids 
@@ -65,9 +66,14 @@
 			var boxContainer = d3.select('#box-chart-' + id)
 				.append("div")
 				.attr("class", "box-container");
-		};
 
-		console.log(data[1]);
+			boxContainer.selectAll("p")
+					.data(data)
+					.enter().append("p")
+					.text(function(d){
+						return d.title;
+					});
+		};
 
 		// sets a unique chart ID and builds all down-page grids
 		var chartID = 0;
@@ -75,9 +81,7 @@
 			if (data[set][0].season > 0 && data[set][0].season !== null) {
 				buildGridCharts(data[set], chartID+=1);
 			};
-		}
-
-		//buildGridCharts(data[2], chartID+=1);
+		};
 		
 	});
 </script>
