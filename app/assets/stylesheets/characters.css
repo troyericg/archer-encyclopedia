@@ -4,15 +4,17 @@
 
 
 li.character {
+	background-color: #fff;
 	border-top: 1px solid #ccc;
 	margin-top: 20px;
-	padding: 40px 0px; 
+	padding: 20px;
+	width: 766px;
 }
 
-li.character:first-child {
+/*li.character:first-child {
 	border-top: none;
 	margin-top: 0px;
-}
+}*/
 
 li.character div.character-inner {
 	display: inline-block;
@@ -32,7 +34,7 @@ li.character div.column-1 {
 li.character div.column-2 {
 	display: inline;
 	float: left;
-	width: 530px;
+	width: 500px;
 }
 
 li.character div.img {

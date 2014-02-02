@@ -9,7 +9,7 @@
 				</div>
 				<h3><%= character.name %></h3>
 				<p class="bio"><%= character.summary.split(".")[0] %>.<p>
-				<p class="details">A Number of References over a Number of Episodes<p>
+				<p class="details"><%= character.references.count %> References over <%= character.episodes.count %> Episodes<p>
 			</div>
 			<div class="column-2">
 				<p class="references">

@@ -3,7 +3,7 @@
 	<li class="section-letter">
 		<div class="letter-header">
 			<h5 class="letter"><%= letter %></h5>
-			<h6 class="details">120 references, covering Music, Art &amp; Culture, Science, and Celebrities </h6>
+			<h6 class="details"><%= @grouped[letter].count %> references, covering Music, Art &amp; Culture, Science, and Celebrities </h6>
 		</div>
 		<ul class="section-references">
 			<% @grouped[letter].each do |ref| %>
