@@ -48,9 +48,10 @@ h6.details {
 
 ul.section-references li {
 	background-color: #fff;
-	border-top: 1px solid #ccc;
-	padding: 20px;
-	width: 766px;
+	border: 1px solid #e2e2e2;
+	margin-top: -1px;
+	padding: 40px;
+	width: 726px;
 }
 
 ul.section-references li div.reference-inner {
@@ -105,7 +106,7 @@ div.reference-inner div.column-1 div.referral-list ul li {
 	display: inline;
 	float: left;
 	margin: 0px 5px 5px 0px;
-	padding-top: 0px;
+	padding: 0px;
 	width: 25px;
 	border: none;
 }
@@ -139,7 +140,7 @@ div.reference-inner div.column-2 div.img img {
 div.reference-inner div.column-3 {
 	display: inline;
 	float: left;
-	width: 332px;
+	width: 294px;
 }
 
 div.reference-inner div.column-3 p {

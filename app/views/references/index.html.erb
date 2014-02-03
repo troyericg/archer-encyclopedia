@@ -6,14 +6,14 @@
 			<h6 class="details"><%= @grouped[letter].count %> references, covering Music, Art &amp; Culture, Science, and Celebrities </h6>
 		</div>
 		<ul class="section-references">
-			<% @grouped[letter].each do |ref| %>
+			<% @grouped[letter].sort.each do |ref| %>
 			<% ref_id = "#{ ref.subject.gsub(/\p{^Alnum}/, '').downcase }" %>
 			<li id="<%= ref_id %>">
 				<div class="reference-inner">
 					<div class="column-1">
 						<h2><%= ref.subject %></h2>
-						<p class="details"># References in # episode</p>
-						<p class="categories">Found in <a href="#">Music</a></p>
+						<p class="details">Referenced # times</p>
+						<p class="categories">Found in <a href="#"><%= ref.category %></a></p>
 						<div class="referral-list">
 							<h6 class="title">Referenced By</h6>
 							<ul>
